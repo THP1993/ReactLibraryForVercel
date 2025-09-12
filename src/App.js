@@ -1,15 +1,16 @@
-
-import './App.css';
-import Landing from './Components/Landing';
-import Nav from './Components/Nav';
-
+import "./App.css";
+import Landing from "./Components/Landing";
+import Nav from "./Components/Nav";
+import Highlights from "./Components/Highlights";
+import Featured from "./Components/Featured";
 
 function App() {
   return (
     <div className="App">
-  <Nav />
-  <Landing />
-
+      <Nav />
+      <Landing />
+      <Highlights />
+      <Featured />
     </div>
   );
 }
