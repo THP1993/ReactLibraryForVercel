@@ -1,10 +1,15 @@
 
 import './App.css';
+import Landing from './Components/Landing';
+import Nav from './Components/Nav';
+
 
 function App() {
   return (
     <div className="App">
-test
+  <Nav />
+  <Landing />
+
     </div>
   );
 }
