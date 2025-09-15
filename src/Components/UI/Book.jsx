@@ -16,7 +16,7 @@ const Book = ({ book }) => {
       </div>
       <div className="book__ratings">
         {new Array(5).fill(0).map((element, index) => (
-          <FontAwesomeIcon icon="star" key={index} />
+          <FontAwesomeIcon icon={index < book.rating ? "star" : "star-half-alt"} key={index} />
         ))}
       </div>
       <div className="book__price">
