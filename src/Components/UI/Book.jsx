@@ -21,7 +21,6 @@ const Book = ({ book }) => {
       }, 300);
     };
 
-
     return () => {
       mountedRef.current = false;
     }
