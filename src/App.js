@@ -8,6 +8,7 @@ import Books from "./Pages/Books";
 import { books } from "./data";
 import BookInfo from "./Pages/BookInfo";
 import Cart from "./Pages/Cart";
+
 function App() {
   const [cart, setCart] = useState([]);
 
