@@ -1,19 +1,74 @@
 import "./App.css";
+import React, { useEffect, useState } from "react";
 import Footer from "./Components/Footer";
 import Nav from "./Components/Nav";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home";
 import Books from "./Pages/Books";
 import { books } from "./data";
 import BookInfo from "./Pages/BookInfo";
+import Cart from "./Pages/Cart";
 function App() {
+  const [cart, setCart] = useState([]);
+
+  function addToCart(book) {
+    setCart([...cart, { ...book, quantity: 1 }]);
+  }
+
+  function changeQuantity(book, quantity) {
+    setCart(
+      cart.map((item) =>
+        item.id === book.id
+          ? {
+              ...item,
+              quantity: +quantity,
+            }
+          : item
+      )
+    );
+  }
+
+  function removeItem(item) {
+    setCart(cart.filter((book) => book.id !== item.id));
+  }
+
+  function numberOfItems() {
+    let counter = 0;
+    cart.forEach(item => {
+      counter += item.quantity;
+    })
+    return counter;
+  }
+
+  useEffect(() => {
+    console.log(cart);
+  }, [cart]);
+
   return (
     <Router>
       <div className="App">
-        <Nav />
-        <Route path="/" exact component={Home} />
-        <Route path="/Books" render={() => <Books books={books} />} />
-        <Route path="/Books/1" render={() => <BookInfo books={books[0]} />} />
+        <Nav numberOfItems={numberOfItems()} />
+        <Routes>
+          <Route path="/" exact element={<Home />} />
+          <Route path="/books" exact element={<Books books={books} />} />
+          <Route
+            path="/books/:id"
+            element={
+              <BookInfo books={books} addToCart={addToCart} cart={cart} />
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <Cart
+                books={books}
+                cart={cart}
+                changeQuantity={changeQuantity}
+                removeItem={removeItem}
+              />
+            }
+          />
+        </Routes>
         <Footer />
       </div>
     </Router>

@@ -1,10 +1,10 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import LibraryLogo from "../assets/Library.svg";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { Link } from "react-router-dom";
 
 
-const Nav = () => {
+const Nav = ({ numberOfItems }) => {
   function openMenu () {
     document.body.classList += " menu--open";
   }
@@ -19,12 +19,12 @@ const Nav = () => {
         </Link>
         <ul className="nav__links">
           <li className="nav__list">
-            <Link to="/" className="nave__link">
+            <Link to="/" className="nav__link">
               Home
             </Link>
           </li>
           <li className="nav__list">
-            <Link to="/Books" className="nave__link">
+            <Link to="/books" className="nav__link">
               Books
             </Link>
           </li>
@@ -32,10 +32,13 @@ const Nav = () => {
             <FontAwesomeIcon icon="bars" />
           </button>
           <li className="nav__icon">
-            <Link to="/cart" className="nav__link">
-              <FontAwesomeIcon icon="shopping-cart" />
+            <Link to="/cart" className="nav__link"> 
+              <FontAwesomeIcon icon="shopping-cart" /> 
             </Link>
-            <span className="cart__length">2</span>
+            {
+              numberOfItems > 0 && <span className="cart__length">{numberOfItems}</span>
+            }
+           
           </li>
         </ul>
         <div className="menu__backdrop">
@@ -49,7 +52,7 @@ const Nav = () => {
                 </Link>
             </li>
             <li className="menu__list">
-                <Link to="/Books" className="menu__link">
+                <Link to="/books" className="menu__link" onClick={closeMenu}>
                 Books
                 </Link>
             </li>
