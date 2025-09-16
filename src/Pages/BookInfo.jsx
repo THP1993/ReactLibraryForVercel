@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link, useParams } from "react-router-dom";
 import Rating from "../Components/ui/Rating";
 import Price from "../Components/Price";
-import Book from "../Components/ui/Book";
+import Book from '../Components/ui/Book';
 
 const BookInfo = ({ books, addToCart, cart }) => {
   const { id } = useParams();
